@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dilema cívico</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Menu Principal -->
+    <div id="tela-menu" class="screen active">
+      <h1>Dilema cívico</h1>
+      <p class="subtitle">Decida entre pagar impostos ou sonegar — cada escolha muda suas moedas e bem-estar.</p>
+
+      <div class="menu-buttons">
+        <button id="btn-jogar">Jogar</button>
+        <button id="btn-instrucoes">Instruções</button>
+        <button id="btn-sair">Sair</button>
+      </div>
+    </div>
+
+    <!-- Tela de Escolha de Classe Social -->
+    <div id="tela-classe" class="screen hidden">
+      <h1>Escolha sua Classe Social</h1>
+      <div class="class-buttons">
+        <button data-classe="baixa">Baixa (50 moedas)</button>
+        <button data-classe="média">Média (100 moedas)</button>
+        <button data-classe="alta">Alta (200 moedas)</button>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9em; color: #ddd;">
+        Cada classe tem renda inicial diferente e impostos proporcionais.
+      </p>
+    </div>
+
+    <!-- Tela de Instruções -->
+    <div id="tela-instrucoes" class="screen hidden">
+      <h1>Como Jogar</h1>
+
+      <div class="instructions-content" style="text-align:left;max-width:720px;margin:0 auto">
+        <h3>Objetivo</h3>
+  <p>Sobreviver 6 rodadas e observar como suas decisões afetam suas moedas e o bem-estar.</p>
+
+        <h3>Controles</h3>
+        <ul>
+          <li><strong>Jogar</strong> — inicia o jogo.</li>
+          <li><strong>Pagar</strong> — paga o imposto: perde moedas, ganha bem-estar.</li>
+          <li><strong>Sonegar</strong> — ganha moedas agora, mas reduz bem-estar; há chance de auditoria.</li>
+          <li><strong>Sair</strong> — tenta fechar o aplicativo ou aba do navegador.</li>
+        </ul>
+
+        <h3>Regras importantes</h3>
+        <ul>
+          <li>Cada rodada você decide pagar ou sonegar impostos.</li>
+          <li>Sonegar dá +10 moedas e -5 de bem-estar, mas tem 20% de chance de auditoria (penalidade: -40 moedas e -15 de bem-estar).</li>
+          <li>Pagar custa os impostos da sua classe e dá +10 de bem-estar.</li>
+           <li>O jogo tem 6 rodadas; ao final é mostrado o resultado.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:18px">
+        <button id="btn-voltar-instrucoes" class="secondary">Voltar</button>
+      </div>
+    </div>
+
+    <!-- Tela de Jogo -->
+    <div id="tela-jogo" class="screen hidden">
+      <h1>Rodada em Andamento</h1>
+
+      <div class="status-bar">
+        <span>Rodada: <strong id="display-rodada">1/6</strong></span>
+        <span>Moedas: <strong id="display-moedas">100</strong></span>
+        <span>Bem-estar: <strong id="display-bemestar">50</strong></span>
+      </div>
+
+      <div id="pergunta" class="question-box">
+        <h2>Você vai pagar os impostos desta rodada?</h2>
+      </div>
+
+      <div class="decision-buttons">
+        <button id="btn-pagar" class="pay">Pagar</button>
+        <button id="btn-sonegar" class="evade">Sonegar (+10)</button>
+      </div>
+
+      <p id="texto-decisao" class="notification">Aguardando sua decisão...</p>
+    </div>
+
+    <!-- Tela de Resultado Final -->
+    <div id="tela-resultado" class="screen hidden">
+      <h1>Resultado Final</h1>
+
+      <div class="final-stats">
+        <p><span>Moedas Finais: </span><strong id="final-moedas">0</strong></p>
+        <p><span>Bem-estar Final: </span><strong id="final-bemestar">0</strong></p>
+      </div>
+
+      <p id="mensagem-final" style="margin-top:12px"></p>
+
+      <div style="margin-top:18px">
+        <button id="btn-voltar-menu" class="secondary">Voltar ao Menu</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pop-up de Informações -->
+  <div id="info-popup">
+    <div id="info-popup-content">
+      <p>O IRPF é um imposto federal que financia saúde, educação e segurança pública.</p>
+      <p>No Brasil, o IRPF é progressivo: quem ganha mais, paga mais.</p>
+      <p>Impostos sobre consumo como ICMS e IPI estão embutidos nos preços dos produtos.</p>
+      <p>Pessoas de baixa renda são mais afetadas pelos impostos sobre consumo.</p>
+      <p>Sonegar impostos prejudica serviços públicos e aumenta a desigualdade social.</p>
+      <button id="voltar-btn">Voltar</button>
+    </div>
+  </div>
+
+  <!-- Pop-up de Crise Financeira -->
+  <div id="crise-popup">
+    <div id="crise-popup-content">
+      <h2>Crise Financeira!</h2>
+      <p id="crise-texto">Você ficou sem moedas. Empréstimo disponível: 0</p>
+      <div class="crise-buttons">
+        <button id="btn-pedir-emprestimo">Pedir Empréstimo</button>
+        <!-- ID distinto para não conflitar com #btn-sonegar do jogo -->
+        <button id="btn-sonegar-crise">Não pagar impostos</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-fundo" src="game.mp3" loop autoplay></audio>
+  
+  <!--Alerta (Fiscalização) -->
+  <div id="alert-toast" aria-live="assertive" aria-atomic="true">
+    <span id="alert-toast-msg">ALERTA</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* Fonte e Fundo */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: #2C2F72;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contêiner Principal */
+.container {
+    background-color: rgba(50, 60, 150, 0.85);
+    padding: 30px 40px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    width: 470px;
+    text-align: center;
+}
+
+/* Esconder elementos */
+.hidden { display: none; }
+
+/* Títulos */
+h1 {
+    font-size: 2.2em;
+    margin: 0 0 25px 0;
+    text-shadow: 2px 2px 5px #000;
+}
+h2 {
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+/* Barra de Status */
+.status-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    font-size: 15px;
+    color: #f1f1f1;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px #00000050;
+}
+.status-bar span { font-weight: 500; }
+.status-bar strong {
+    color: #ffd700;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Caixa de Pergunta */
+.question-box {
+    border-left: 5px solid #FFC107;
+    padding-left: 15px;
+    text-align: left;
+    margin: 30px 0;
+    font-size: 1.1em;
+}
+
+/* Botões gerais */
+button {
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: rgb(7, 7, 7);
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Hover e efeitos */
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+}
+
+/* Botões específicos com emojis */
+#btn-jogar { background-color: #4CAF50; content: "▶️ Jogar"; }
+#btn-instrucoes { background-color: #2196F3; }
+#btn-voltar-instrucoes { background-color: #9C27B0; }
+#btn-sair { background-color: #f44336; }
+
+#btn-pagar::before { content: "💰 "; }
+#btn-sonegar::before { content: "⚖️ "; }
+#btn-voltar-menu { background-color: #FF9800; }
+
+/* Botões lado a lado */
+.decision-buttons { display: flex; gap: 15px; }
+
+/* Tela de classe social */
+.class-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.class-buttons button {
+    background-color: #03A9F4;
+}
+.class-buttons button:hover {
+    background-color: #0288D1;
+}
+
+/* Textos e mensagens */
+#texto-decisao {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 30px;
+    color: #fff;
+    font-size: 1em;
+    text-shadow: 1px 1px 3px #000;
+}
+
+#mensagem-final {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #fff;
+    text-shadow: 1px 1px 4px #000;
+}
+
+/* Pop-up de Informações
+   - Começa oculto e cobre toda a tela quando exibido
+   - Centraliza o conteúdo no meio
+*/
+#info-popup {
+    /* Começa oculto */
+    display: none;
+
+    /* Sobrepõe tudo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+
+    /* Fundo escurecido (overlay) */
+    background-color: rgba(0, 0, 0, 0.6);
+
+    /* Centralização do conteúdo */
+    justify-content: center;
+    align-items: center;
+
+    /* Padding para não colar nas bordas em telas pequenas */
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* Caixa de conteúdo do pop-up */
+#info-popup-content {
+    /* ADAPTE AQUI O VISUAL DO SEU JOGO:
+       - font-family: manter a fonte do jogo
+       - background-color: cor base do cartão
+       - border / border-color: destaque no tema do jogo
+       - box-shadow: profundidade semelhante ao restante da UI
+    */
+    background-color: rgba(50, 60, 150, 0.95);
+    color: #fff;
+    padding: 24px 28px;
+    border-radius: 18px;
+    border: 3px solid #FFC107;
+    width: 100%;
+    max-width: 560px;
+    text-align: left;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+#info-popup-content p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+}
+
+#info-popup-content p:last-child {
+    margin-bottom: 18px;
+}
+
+/* Botão de fechar (Voltar) do pop-up */
+#voltar-btn {
+    /* ADAPTE AQUI O VISUAL DO SEU JOGO */
+    background-color: #FF9800; /* Cor base do jogo (combina com #btn-voltar-menu) */
+    color: #111;
+    border: 2px solid #E68900;
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 12px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit; /* Usa a mesma fonte do pop-up */
+}
+
+#voltar-btn:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Pop-up de Crise
+   - ADAPTE AQUI O VISUAL DO SEU JOGO
+   - Começa oculto e cobre toda a tela quando exibido
+   - Centraliza o conteúdo no meio da viewport
+*/
+#crise-popup {
+    /* Começa oculto */
+    display: none;
+
+    /* Sobrepõe tudo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1100; /* acima de outros overlays, se houver */
+
+    /* Fundo escurecido (overlay) */
+    background-color: rgba(0, 0, 0, 0.65);
+
+    /* Centralização do conteúdo */
+    justify-content: center;
+    align-items: center;
+
+    /* Padding para não colar nas bordas em telas pequenas */
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* Caixa de conteúdo do pop-up */
+#crise-popup-content {
+    background-color: rgba(40, 50, 140, 0.98);
+    color: #fff;
+    padding: 22px 24px;
+    border-radius: 18px;
+    border: 3px solid #FF6F61; /* tom de alerta para crise */
+    width: 100%;
+    max-width: 560px;
+    text-align: left;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+
+#crise-popup-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+#crise-popup-content p {
+    margin: 0 0 16px 0;
+    font-size: 1em;
+}
+
+.crise-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+#btn-pedir-emprestimo {
+    /* Botão positivo */
+    background-color: #4CAF50;
+    color: #111;
+    border: 2px solid #3F9144;
+}
+
+#btn-sonegar-crise {
+    /* Botão de alerta/negativo */
+    background-color: #f44336;
+    color: #111;
+    border: 2px solid #d4382b;
+}
+
+#btn-pedir-emprestimo:hover,
+#btn-sonegar-crise:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+}
+
+/*Alerta (fiscalização) */
+#alert-toast {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336; /* vermelho de alerta */
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid #d4382b;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+    z-index: 1200;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#alert-toast.show {
+    display: block;
+    animation: toast-slide-down 0.2s ease-out;
+}
+
+@keyframes toast-slide-down {
+    from { transform: translate(-50%, -10px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
